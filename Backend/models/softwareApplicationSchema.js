@@ -14,5 +14,5 @@ const softwareApplicationSchema = new mongoose.Schema({
    },
 });
 
-const softwareApplication = mongoose.model("softwareApplication", softwareApplicationSchema);
-export default softwareApplication;
+const SoftwareApplication = mongoose.model("softwareApplication", softwareApplicationSchema);
+export default SoftwareApplication;

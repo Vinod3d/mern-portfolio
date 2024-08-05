@@ -3,17 +3,17 @@ import connectDB from './db/connectDB.js';
 import { APP_PORT, DASHBOARD_URL, JWT_KEY, PORTFOLIO_URL } from './config/index.js';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
-import cloudinary from './config/cloudinaryConfig.js';
 import errorHandler from './middlewares/errorHandlers.js';
 import cookieParser from 'cookie-parser';
 import messageRoutes from './routes/messageRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import timelineRoutes from './routes/timelineRoutes.js'
 import softwareApplicationRoutes from './routes/softwareApplicationRoutes.js'
+import skillRoutes from './routes/skillRoutes.js'
+import projectRoutes from './routes/projectRoutes.js'
+import cloudinary from './config/cloudinaryConfig.js';
 
 const app = express();
-
-
 const port = APP_PORT || 3000;
 
 app.use(express.json());
@@ -26,7 +26,6 @@ app.use(
         credential: true
     })
 );
-
 app.use(
     fileUpload({
         useTempFiles: true,
@@ -40,7 +39,8 @@ app.use('/api/message', messageRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/timeline', timelineRoutes)
 app.use('/api/application', softwareApplicationRoutes)
-
+app.use('/api/skill', skillRoutes)
+app.use('/api/project', projectRoutes)
 app.use(errorHandler);
 
 const start = async () => {
@@ -53,5 +53,4 @@ const start = async () => {
         console.log(error);
     }
 };
-
 start();

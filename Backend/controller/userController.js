@@ -9,7 +9,7 @@ import crypto from 'crypto'
 // USER REGISTER
 
 export const register = async (req, res, next) => {
-  if (!req.files || Object.keys(req.files) === 0) {
+  if (!req.files || Object.keys(req.files).length === 0) {
     return next(
       CustomErrorHandler.badRequest("Avatar and Resume Are Required")
     );
