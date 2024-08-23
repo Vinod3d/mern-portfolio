@@ -2,6 +2,7 @@
 /* eslint-disable no-self-assign */
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseUrl } from "../../utils";
 
 const softwareApplicationSlice = createSlice({
   name: "softwareApplications",
@@ -76,7 +77,7 @@ export const getAllSoftwareApplications = () => async (dispatch) => {
   );
   try {
     const response = await axios.get(
-      "/api/application/getall",
+      `${baseUrl}/api/application/getall`,
       { withCredentials: true }
     );
     
@@ -102,7 +103,7 @@ export const addNewSoftwareApplication = (name, svg) => async (dispatch) => {
   );
   try {
     const response = await axios.post(
-      "/api/application/add",
+      `${baseUrl}/api/application/add`,
       { name, svg },
       {
         withCredentials: true,
@@ -130,7 +131,7 @@ export const deleteSoftwareApplication = (id) => async (dispatch) => {
   );
   try {
     const response = await axios.delete(
-      `/api/application/delete/${id}`,
+      `${baseUrl}/api/application/delete/${id}`,
       {
         withCredentials: true,
       }

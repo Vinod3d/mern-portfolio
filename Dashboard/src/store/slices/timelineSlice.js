@@ -1,6 +1,7 @@
 /* eslint-disable no-self-assign */
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseUrl } from "../../utils";
 
 const timelineSlice = createSlice({
   name: "timeline",
@@ -73,7 +74,7 @@ export const getAllTimeline = () => async (dispatch) => {
   dispatch(timelineSlice.actions.getAllTimelineRequest());
   try {
     const response = await axios.get(
-      "/api/timeline/getall",
+      `${baseUrl}/api/timeline/getall`,
       { withCredentials: true }
     );
     dispatch(
@@ -92,7 +93,7 @@ export const addNewTimeline = (data) => async (dispatch) => {
   dispatch(timelineSlice.actions.addNewTimelineRequest());
   try {
     const response = await axios.post(
-      "/api/timeline/add",
+      `${baseUrl}/api/timeline/add`,
       data,
       {
         withCredentials: true,
@@ -113,7 +114,7 @@ export const deleteTimeline = (id) => async (dispatch) => {
   dispatch(timelineSlice.actions.deleteTimelineRequest());
   try {
     const response = await axios.delete(
-      `/api/timeline/delete/${id}`,
+      `${baseUrl}/api/timeline/delete/${id}`,
       {
         withCredentials: true,
       }

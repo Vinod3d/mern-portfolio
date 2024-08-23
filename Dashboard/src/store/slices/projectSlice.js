@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseUrl } from "../../utils";
 
 const projectSlice = createSlice({
   name: "project",
@@ -89,7 +90,7 @@ export const getAllProjects = () => async (dispatch) => {
   dispatch(projectSlice.actions.getAllProjectsRequest());
   try {
     const response = await axios.get(
-      "/api/project/getall",
+      `${baseUrl}/api/project/getall`,
       { withCredentials: true }
     );
     dispatch(
@@ -107,7 +108,7 @@ export const addNewProject = (data) => async (dispatch) => {
   dispatch(projectSlice.actions.addNewProjectRequest());
   try {
     const response = await axios.post(
-      "/api/project/add",
+      `${baseUrl}/api/project/add`,
       data,
       {
         withCredentials: true,
@@ -126,7 +127,7 @@ export const deleteProject = (id) => async (dispatch) => {
   dispatch(projectSlice.actions.deleteProjectRequest());
   try {
     const response = await axios.delete(
-      `/api/project/delete/${id}`,
+      `${baseUrl}/api/project/delete/${id}`,
       {
         withCredentials: true,
       }
@@ -143,7 +144,7 @@ export const updateProject = (id, newData) => async (dispatch) => {
   dispatch(projectSlice.actions.updateProjectRequest());
   try {
     const response = await axios.put(
-      `/api/project/update/${id}`,
+      `${baseUrl}/api/project/update/${id}`,
       newData,
       {
         withCredentials: true,

@@ -1,6 +1,7 @@
 /* eslint-disable no-self-assign */
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseUrl } from "../../utils";
 
 const messageSlice = createSlice({
     name: "messages",
@@ -59,7 +60,7 @@ export const  getAllMessages = () => async(dispatch)=>{
     dispatch(messageSlice.actions.getAllMessagesRequest());
     try {
         const {data} = await axios.get(
-            "/api/message/getall", 
+            `${baseUrl}/api/message/getall`, 
             { withCredentials: true, }
         );
         dispatch(messageSlice.actions.getAllMessagesSuccess(data.messages));
@@ -73,7 +74,7 @@ export const deleteMessage = (id) => async(dispatch) => {
   dispatch(messageSlice.actions.deleteMessageRequest());
   try {
     const {data} = await axios.delete(
-      `/api/message/delete/${id}`,
+      `${baseUrl}/api/message/delete/${id}`,
       { withCredentials: true }
     );
 

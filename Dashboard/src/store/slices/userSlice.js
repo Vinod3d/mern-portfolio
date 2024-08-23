@@ -2,6 +2,7 @@
 /* eslint-disable no-self-assign */
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios"
+import { baseUrl } from "../../utils";
 
 const userSlice = createSlice({
     name : "user",
@@ -136,7 +137,7 @@ export const login = (email, password) => async (dispatch)=>{
     dispatch(userSlice.actions.loginRequest());
     try {
         const {data} = await axios.post(
-            "http://localhost:3000/api/user/login",
+            `${baseUrl}/api/user/login`,
             {email, password},
             {
                 withCredentials: true,
@@ -157,7 +158,7 @@ export const getUser = () => async (dispatch)=>{
     dispatch(userSlice.actions.loadRequest());
     try {
         const {data} = await axios.get(
-            "http://localhost:3000/api/user/me",
+            `${baseUrl}/api/user/me`,
             { withCredentials: true, }
         );
 
@@ -171,7 +172,7 @@ export const getUser = () => async (dispatch)=>{
 export const logout = () => async (dispatch)=>{
     try {
         const {data} = await axios.get(
-            "http://localhost:3000/api/user/logout",
+            `${baseUrl}/api/user/logout`,
             { withCredentials: true, }
         );
 
@@ -187,7 +188,7 @@ export const updatePassword = (currentPassword, newPassword, confirmNewPassword)
     dispatch(userSlice.actions.updatePasswordRequest());
     try {
         const {data} = await axios.put(
-            "http://localhost:3000/api/user/update/password",
+            `${baseUrl}/api/user/update/password`,
             {currentPassword, newPassword, confirmNewPassword},
             {
                 withCredentials : true,
@@ -208,7 +209,7 @@ export const updateProfile = (formData) => async (dispatch) => {
     dispatch(userSlice.actions.updateProfileRequest());
     try {
       const response = await axios.put(
-        "/api/user/update/me",
+        `${baseUrl}/api/user/update/me`,
         formData,
         {
           withCredentials: true,

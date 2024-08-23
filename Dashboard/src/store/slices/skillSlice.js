@@ -1,6 +1,7 @@
 /* eslint-disable no-self-assign */
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseUrl } from "../../utils";
 
 const skillSlice = createSlice({
   name: "skill",
@@ -88,7 +89,7 @@ export const getAllSkills = () => async (dispatch) => {
   dispatch(skillSlice.actions.getAllSkillsRequest());
   try {
     const response = await axios.get(
-      "/api/skill/getall",
+      `${baseUrl}/api/skill/getall`,
       { withCredentials: true }
     );
     dispatch(skillSlice.actions.getAllSkillsSuccess(response.data. skills));
@@ -104,7 +105,7 @@ export const addNewSkill = (data) => async (dispatch) => {
   dispatch(skillSlice.actions.addNewSkillRequest());
   try {
     const response = await axios.post(
-      "/api/skill/add",
+      `${baseUrl}/api/skill/add`,
       data,
       {
         withCredentials: true,
@@ -124,7 +125,7 @@ export const updateSkill = (id, proficiency) => async (dispatch) => {
   dispatch(skillSlice.actions.updateSkillRequest());
   try {
     const response = await axios.put(
-      `/api/skill/update/${id}`,
+      `${baseUrl}/api/skill/update/${id}`,
       { proficiency },
       {
         withCredentials: true,
@@ -142,7 +143,7 @@ export const deleteSkill = (id) => async (dispatch) => {
   dispatch(skillSlice.actions.deleteSkillRequest());
   try {
     const response = await axios.delete(
-      `/api/skill/delete/${id}`,
+      `${baseUrl}/api/skill/delete/${id}`,
       {
         withCredentials: true,
       }

@@ -2,6 +2,8 @@
 /* eslint-disable no-self-assign */
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios"
+import { baseUrl } from "../../utils";
+
 
 const forgotResetPasswordSlice = createSlice({
     name : "forgotPassword",
@@ -60,7 +62,7 @@ export const forgotPassword = (email) => async (dispatch)=>{
    dispatch(forgotResetPasswordSlice.actions.forgotPasswordRequest());
    try {
         const {data } = await axios.post(
-            "/api/user/password/forgot",
+            `${baseUrl}/api/user/password/forgot`,
             {email},
             {
                 withCredentials: true,
@@ -80,7 +82,7 @@ export const resetPassword = (token, password, confirmPassword) => async (dispat
     dispatch(forgotResetPasswordSlice.actions.resetPasswordRequest());
    try {
         const {data } = await axios.put(
-            `/api/user/password/reset/${token}`,
+            `${baseUrl}/api/user/password/reset/${token}`,
             {password, confirmPassword},
             {
                 withCredentials: true,
