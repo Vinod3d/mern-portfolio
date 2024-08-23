@@ -4,13 +4,7 @@ import { defineConfig } from "vite"
 
 export default defineConfig({
   server : {
-    proxy: {
-      '/api': {
-        target: 'https://myportfoliosite-02yh.onrender.com',
-        secure: true,
-        changeOrigin: true,
-      },
-    },
+    
   },
   
   plugins: [react()],
