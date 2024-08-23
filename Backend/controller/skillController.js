@@ -119,10 +119,10 @@ export const updateSkill = async(req, res, next)=>{
 
 export const getAllSkill = async(req, res, next)=>{
     try {
-        const skill = await Skill.find();
+        const skills = await Skill.find();
         res.status(200).json({
           success: true,
-          skill
+          skills
         })
     } catch (error) {
         return next(error)

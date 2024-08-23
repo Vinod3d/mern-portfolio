@@ -11,7 +11,7 @@ export const addApplication = async (req, res, next) => {
     );
   }
 
-  const { image } = req.files;
+  const { svg } = req.files;
   const { name } = req.body;
 
   if(!name){
@@ -20,7 +20,7 @@ export const addApplication = async (req, res, next) => {
 
   try {
     const cloudinaryResponse = await cloudinary.uploader.upload(
-      image.tempFilePath,
+      svg.tempFilePath,
       {folder : "PORTFOLIO_SOFTWARE"}
     );
   

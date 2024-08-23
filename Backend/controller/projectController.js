@@ -81,11 +81,6 @@ export const addProject = async (req, res, next)=>{
 
 export const updateProject = async (req, res, next)=>{
     const { id } = req.params;
-    if (!req.files || Object.keys(req.files).length === 0) {
-        return next(
-          CustomErrorHandler.badRequest("Project Banner Image Required")
-        );
-    }
 
     const {
         title,
@@ -96,7 +91,7 @@ export const updateProject = async (req, res, next)=>{
         stack,
         deployed,
     } = req.body;
-    const { projectBanner } = req.files;
+    const { projectBanner } = req.files || {};
    
 
     const newProjectData = {
@@ -114,25 +109,28 @@ export const updateProject = async (req, res, next)=>{
         if (!project) {
             return next(CustomErrorHandler.notFound("Project Not Found"));
         }
-        const bannerImageId = project.projectBanner.public_id;
-        await cloudinary.uploader.destroy(bannerImageId);
-        const cloudinaryResponse = await cloudinary.uploader.upload(
-            projectBanner.tempFilePath,
-            { folder: "projects_banner" }
-        );
-      
-        if (!cloudinaryResponse || cloudinaryResponse.error) {
-            return next(
-              CustomErrorHandler.badRequest(
-                "Cloudinary Error:",
-                cloudinaryResponse.error || "Unknown Cloudinary Error"
-              )
-            );
-        }
+        if(projectBanner === null){
 
-        newProjectData.projectBanner = {
-            public_id: cloudinaryResponse.public_id,
-            url: cloudinaryResponse.secure_url,
+            const bannerImageId = project.projectBanner.public_id;
+            await cloudinary.uploader.destroy(bannerImageId);
+            const cloudinaryResponse = await cloudinary.uploader.upload(
+                projectBanner.tempFilePath,
+                { folder: "projects_banner" }
+            );
+          
+            if (!cloudinaryResponse || cloudinaryResponse.error) {
+                return next(
+                  CustomErrorHandler.badRequest(
+                    "Cloudinary Error:",
+                    cloudinaryResponse.error || "Unknown Cloudinary Error"
+                  )
+                );
+            }
+    
+            newProjectData.projectBanner = {
+                public_id: cloudinaryResponse.public_id,
+                url: cloudinaryResponse.secure_url,
+            }
         }
 
         const updatedProjectData = await Project.findByIdAndUpdate(

@@ -187,7 +187,6 @@ export const updateProfile = async (req, res, next) => {
       const avatar = req.files.avatar;
       const user = await User.findById(req.user.id);
       const profileImageId = user.avatar.public_id;
-      console.log(profileImageId)
       await cloudinary.uploader.destroy(profileImageId);
       const cloudinaryResponse = await cloudinary.uploader.upload(
         avatar.tempFilePath,
@@ -286,16 +285,20 @@ export const getUserPortfolio = async (req, res, next)=>{
 // FORGOT PASSWORD
 
 export const forgotPassword = async (req, res, next)=>{
-  const user = await User.findOne({email: req.body.email});
-  if(!user){
-    return next(CustomErrorHandler.badRequest("User Not Found"))
+  const { email } = req.body;
+  if (!email) {
+    return next(CustomErrorHandler.badRequest('Please Enter Your Email'));
   }
-
-  const resetToken = user.getResetPasswordToken();
-  await user.save({validateBeforeSave: false});
-  const resetPasswordUrl = `${DASHBOARD_URL}/password/reset/${resetToken}`;
-  const message = `Your password reset token is - \n\n ${resetPasswordUrl} \n\n If you've not request for this please ignore it.` ;
   try {
+    const user = await User.findOne({email});
+    if(!user){
+      return next(CustomErrorHandler.badRequest("User Not Found"))
+    }
+  
+    const resetToken = user.getResetPasswordToken();
+    await user.save({validateBeforeSave: false});
+    const resetPasswordUrl = `${DASHBOARD_URL}/password/reset/${resetToken}`;
+    const message = `Your password reset token is - \n\n ${resetPasswordUrl} \n\n If you've not request for this please ignore it.` ;
     await sendEmail({
       email: user.email,
       subject: "Personal Portfolio Recovery Password",
@@ -319,6 +322,8 @@ export const forgotPassword = async (req, res, next)=>{
 
 export const resetPassword = async (req, res, next)=>{
   const {token} = req.params;
+  const { password, confirmPassword } = req.body;
+  console.log(token, password, confirmPassword);
   const resetPasswordToken = crypto
     .createHash("sha256")
     .update(token)
@@ -328,14 +333,18 @@ export const resetPassword = async (req, res, next)=>{
       resetPasswordToken,
       resetPasswordExpires : {$gt: Date.now()},
     });
+    if (!password || !confirmPassword) {
+      return next(CustomErrorHandler.badRequest('Password and Confirm Password are required'));
+    }
     if(!user){
       return next(CustomErrorHandler.badRequest("Invalid Token or has been expired"))
     }
 
-    if(req.body.password !== req.body.confirmPassword){
+
+    if(password !== confirmPassword){
       return next(CustomErrorHandler.badRequest("Password does not match"));
     }
-    user.password = req.body.password;
+    user.password = password;
     user.resetPasswordToken = undefined;
     user.resetPasswordExpires = undefined;
     await user.save();

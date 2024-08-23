@@ -23,7 +23,7 @@ app.use(
     cors({
         origin: [PORTFOLIO_URL, DASHBOARD_URL],
         methods: ["GET", "POST", "PUT", "DELETE"],
-        credential: true
+        credentials: true
     })
 );
 app.use(

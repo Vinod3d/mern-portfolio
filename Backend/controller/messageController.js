@@ -21,10 +21,10 @@ export const sendMessage = async (req, res, next)=>{
 
 export const getAllMessage = async(req, res, next)=>{
     try {
-        const message = await Message.find();
+        const messages = await Message.find();
         res.status(200).json({
             success: true,
-            message
+            messages
         })
     } catch (error) {
         return next(error);
