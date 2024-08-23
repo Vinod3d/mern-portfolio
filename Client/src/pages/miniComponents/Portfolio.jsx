@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../../utils/index.js";
+
+
 
 const Portfolio = () => {
   const [viewAll, setViewAll] = useState(false);
@@ -9,7 +12,7 @@ const Portfolio = () => {
   useEffect(() => {
     const getMyProjects = async () => {
       const { data } = await axios.get(
-        "/api/project/getall",
+        `${baseUrl}/api/project/getall`,
         { withCredentials: true }
       );
       setProjects(data.projects);

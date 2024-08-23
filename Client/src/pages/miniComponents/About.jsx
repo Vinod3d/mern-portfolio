@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { baseUrl } from "../../utils";
+
 
 const About = () => {
   const [user, setUser] = useState({});
   useEffect(() => {
     const getMyProfile = async () => {
       const { data } = await axios.get( 
-        "/api/user/me/portfolio",
+        `${baseUrl}/api/user/me/portfolio`,
         { withCredentials: true }
       );
       setUser(data.user);

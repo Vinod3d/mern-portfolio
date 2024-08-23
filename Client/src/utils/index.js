@@ -1,0 +1,1 @@
+export const baseUrl = 'https://myportfoliosite-02yh.onrender.com'

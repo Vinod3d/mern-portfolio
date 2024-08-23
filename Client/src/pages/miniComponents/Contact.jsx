@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { baseUrl } from "../../utils";
 
 const Contact = () => {
   const [senderName, setSenderName] = useState("");
@@ -17,7 +18,7 @@ const Contact = () => {
     setLoading(true);
     await axios
       .post(
-        "/api/message/send",
+        `${baseUrl}/api/message/send`,
         { senderName, subject, message },
         {
           withCredentials: true,

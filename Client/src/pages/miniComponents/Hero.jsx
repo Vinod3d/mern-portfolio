@@ -11,13 +11,14 @@ import {
   import { Typewriter } from "react-simple-typewriter";
   import { Button } from "@/components/ui/button";
   import axios from "axios";
+import { baseUrl } from "../../utils";
   
   const Hero = () => {
     const [user, setUser] = useState({});
     useEffect(() => {
       const getMyProfile = async () => {
         const { data } = await axios.get(
-          "/api/user/me/portfolio",
+          `${baseUrl}/api/user/me/portfolio`,
           { withCredentials: true }
         );
         setUser(data.user);

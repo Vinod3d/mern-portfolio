@@ -1,13 +1,14 @@
 import { Card } from "@/components/ui/card";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { baseUrl } from "../../utils";
 
 const MyApps = () => {
   const [apps, setApps] = useState([]);
   useEffect(() => {
     const getMyApps = async () => {
       const { data } = await axios.get(
-        "/api/application/getall",
+        `${baseUrl}/api/application/getall`,
         { withCredentials: true }
       );
 
