@@ -6,8 +6,9 @@ export default defineConfig({
   server : {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000/',
-        secure: false,
+        target: 'https://myportfoliosite-02yh.onrender.com',
+        secure: true,
+        changeOrigin: true,
       },
     },
   },
