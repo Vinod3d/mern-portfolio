@@ -22,7 +22,7 @@ app.use(cookieParser(JWT_KEY));
 app.use(express.urlencoded({extended: true}));
 app.use(
     cors({
-        origin: [PORTFOLIO_URL, DASHBOARD_URL],
+        origin: ['https://mymernportfolio.vercel.app/', DASHBOARD_URL],
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
         credentials: true
     })
