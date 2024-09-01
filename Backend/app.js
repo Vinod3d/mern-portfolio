@@ -15,14 +15,15 @@ import cloudinary from './config/cloudinaryConfig.js';
 
 const app = express();
 const port = APP_PORT || 3000;
-
+console.log(PORTFOLIO_URL)
+console.log(DASHBOARD_URL)
 app.use(express.json());
 app.use(cookieParser(JWT_KEY));
 app.use(express.urlencoded({extended: true}));
 app.use(
     cors({
         origin: [PORTFOLIO_URL, DASHBOARD_URL],
-        methods: ["GET", "POST", "PUT", "DELETE"],
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
         credentials: true
     })
 );
