@@ -1,11 +1,22 @@
-import axios from "axios";
+import "./About.css";
+import theme_pattern from "../../assets/theme_pattern.svg";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { baseUrl } from "../../utils";
 
-
-const Timeline = () => {
+const About = () => {
+  const [user, setUser] = useState({});
   const [timeline, setTimeline] = useState([]);
+
   useEffect(() => {
+    const getMyProfile = async () => {
+      const { data } = await axios.get( 
+        `${baseUrl}/api/user/me/portfolio`,
+        { withCredentials: true }
+      );
+      setUser(data.user);
+    };
+
     const getMyTimeline = async () => {
       const { data } = await axios.get(`${baseUrl}/api/timeline/getall`, {
         withCredentials: true,
@@ -13,9 +24,30 @@ const Timeline = () => {
       setTimeline(data.timeline);
     };
     getMyTimeline();
+
+
+    getMyProfile();
   }, []);
+  
   return (
-    <div>
+    <div className="about" id="about">
+      <div className="title-box">
+        <h1>About me</h1>
+        <img src={theme_pattern} alt="" />
+      </div>
+      <div className="about-sections">
+        <div className="about-left">
+          <img src={user.avatar && user.avatar.url}
+              alt={user.fullName} />
+        </div>
+        <div className="about-right">
+        <div className="about-para">
+          {user?.aboutMe?.split('.').filter(text => text.trim() !== '').map((text, index) => (
+            <p key={index}>{text.trim()}.</p>
+          ))}
+        </div>
+
+        <div>
       <h1 className="overflow-x-hidden text-[2rem] sm:text-[1.75rem] md:text-[2.2rem] lg:text-[2.8rem] mb-4 font-extrabold">
         Timeline
       </h1>
@@ -49,7 +81,13 @@ const Timeline = () => {
           })}
       </ol>
     </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
   );
 };
 
-export default Timeline;
+export default About;

@@ -27,6 +27,7 @@ const UpdateProfile = () => {
   const [formData, setFormData] = useState({
     fullName: user?.fullName || "",
     email: user?.email || "",
+    address: user?.address || "",
     phone: user?.phone || "",
     aboutMe: user?.aboutMe || "",
     portfolioURL: user?.portfolioURL || "",
@@ -127,6 +128,15 @@ const UpdateProfile = () => {
             value={formData.email}
             onChange={handleInputChange}
             name="email"
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label>Address</Label>
+          <Input
+            type="text"
+            value={formData.address}
+            onChange={handleInputChange}
+            name="address"
           />
         </div>
         <div className="grid gap-2">

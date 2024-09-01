@@ -2,6 +2,8 @@ import { Card } from "@/components/ui/card";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { baseUrl } from "../../utils";
+import theme_pattern from "../../assets/theme_pattern.svg";
+import './skills.css'
 
 const Skills = () => {
   const [skills, setSkills] = useState([]);
@@ -16,16 +18,16 @@ const Skills = () => {
     getMySkills();
   }, []);
   return (
-    <div className="w-full flex flex-col gap-8 sm:gap-12">
-      <h1 className="text-tubeLight-effect text-[2rem] sm:text-[2.75rem] md:text-[3rem] 
-      lg:text-[3.8rem] tracking-[15px] dancing_text mx-auto w-fit">
-        SKILLS
-      </h1>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+    <div className="skills w-full flex flex-col items-center gap-8 sm:gap-12 px-[4%] md:px-[10%] my-20">
+      <div className="title-box">
+        <h1>My Skills</h1>
+        <img src={theme_pattern} alt="" />
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
         {skills &&
           skills.map((element) => {
             return (
-              <Card className="h-fit p-7 flex flex-col justify-center items-center gap-3" key={element._id}>
+              <Card className="card h-fit p-7 flex flex-col justify-center items-center gap-3" key={element._id}>
                 <img
                   src={element.image && element.image.url}
                   alt="skill"

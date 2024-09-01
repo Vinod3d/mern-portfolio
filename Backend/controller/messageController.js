@@ -3,11 +3,14 @@ import CustomErrorHandler from "../services/CustomErrorHandler.js";
 
 export const sendMessage = async (req, res, next)=>{
     try {
-        const {senderName, subject, message} = req.body;
-        if(!senderName || !subject || !message){
+        const {senderName, email, message} = req.body;
+
+        console.log(req.body)
+        console.log(senderName, email, message)
+        if(!senderName || !email || !message){
             return next(CustomErrorHandler.badRequest("Please fill all the fields"));
         }
-        const data = await Message.create({senderName, subject, message});
+        const data = await Message.create({senderName, email, message});
         res.status(200).json({
             success: true,
             message: "Message Sent",

@@ -46,6 +46,10 @@ const Profile = () => {
                 <Input type="email" defaultValue={user.email} disabled />
               </div>
               <div className="grid gap-2">
+                <Label>Address</Label>
+                <Input type="text" defaultValue={user.address} disabled />
+              </div>
+              <div className="grid gap-2">
                 <Label>Phone</Label>
                 <Input type="text" defaultValue={user.phone} disabled />
               </div>

@@ -62,6 +62,13 @@ const AddProject = () => {
     }
     if (message) {
       toast.success(message);
+      setTitle("")
+      setDescription("");
+      setProjectBanner("");
+      setProjectBannerPreview("");
+      setGitRepoLink("");
+      setProjectLink("");
+      setTechnologies("");
       dispatch(resetProjectSlice());
       dispatch(getAllProjects());
     }
@@ -140,7 +147,7 @@ const AddProject = () => {
                           <SelectValue placeholder="Select Project Stack" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="Full Stack">Full Stack</SelectItem>
+                          <SelectItem value="Html&CSS, JavaScript">HTML, CSS, JS</SelectItem>
                           <SelectItem value="Mern">MERN</SelectItem>
                           <SelectItem value="Mean">MEAN</SelectItem>
                           <SelectItem value="Next.JS">NEXT.JS</SelectItem>

@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
+import { baseUrl } from "../utils";
 
 const ViewProject = () => {
   const [project, setProject] = useState({
@@ -23,7 +24,7 @@ const ViewProject = () => {
     const getProject = async () => {
       try {
         const { data } = await axios.get(
-          `/api/project/get/${id}`,
+          `${baseUrl}/api/project/get/${id}`,
           { withCredentials: true }
         );
 
@@ -53,52 +54,56 @@ const ViewProject = () => {
   const technologiesList = technologies.split(", ");
 
   return (
-    <div className="flex mt-7 justify-center items-center min-h-[100vh] sm:gap-4 sm:py-4">
-      <div className="w-[100%] px-5 md:w-[1000px] pb-5">
-        <div className="space-y-12">
-          <div className="border-b border-gray-900/10 pb-12">
+    <div className="flex  justify-center items-center min-h-[100vh] sm:gap-4 sm:py-4 bg-gray-900 text-gray-300">
+      <div className="w-full px-5 md:w-[800px] lg:w-[1000px] pb-5 bg-gray-800 shadow-xl rounded-lg">
+        <div className="space-y-12 p-5">
+          <div className="border-b border-gray-600 pb-12">
             <div className="flex justify-end">
-              <Button onClick={handleReturnToDashboard}>
+              <Button onClick={handleReturnToDashboard} className="bg-blue-600 text-white hover:bg-blue-700 transition-colors">
                 Return to Dashboard
               </Button>
             </div>
-            <div className="mt-10 flex flex-col gap-5">
+            <div className="mt-10 flex flex-col gap-8">
               <div className="w-full sm:col-span-4">
-                <h1 className="text-2xl font-bold mb-4">{title}</h1>
+                <h1 className="text-3xl font-bold mb-4 text-white">{title}</h1>
                 <img
                   src={projectBanner || "/avatarHolder.jpg"}
                   alt="projectBanner"
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg shadow-lg"
                 />
               </div>
               <div className="w-full sm:col-span-4">
-                <p className="text-2xl mb-2">Description:</p>
-                <ul className="list-disc">
+                <p className="text-xl font-semibold text-gray-300 mb-3">Description:</p>
+                <ul className="list-disc list-inside text-gray-400 pl-5">
                   {descriptionList.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li key={index} className="mt-2">
+                      <span className="font-semibold text-white">{item}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
               <div className="w-full sm:col-span-4">
-                <p className="text-2xl mb-2">Technologies:</p>
-                <ul className="list-disc">
+                <p className="text-xl font-semibold text-gray-300 mb-3">Technologies:</p>
+                <ul className="list-disc list-inside text-gray-400 pl-5">
                   {technologiesList.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li key={index} className="mt-2">
+                      <span className="text-blue-400 font-semibold italic">{item}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
               <div className="w-full sm:col-span-4">
-                <p className="text-2xl mb-2">Stack:</p>
-                <p>{stack}</p>
+                <p className="text-xl font-semibold text-gray-300 mb-3">Stack:</p>
+                <p className="text-gray-400"><span className="font-semibold text-white">{stack}</span></p>
               </div>
               <div className="w-full sm:col-span-4">
-                <p className="text-2xl mb-2">Deployed:</p>
-                <p>{deployed}</p>
+                <p className="text-xl font-semibold text-gray-300 mb-3">Deployed:</p>
+                <p className="text-gray-400"><span className="font-semibold text-green-400">{deployed}</span></p>
               </div>
               <div className="w-full sm:col-span-4">
-                <p className="text-2xl mb-2">Github Repository Link:</p>
+                <p className="text-xl font-semibold text-gray-300 mb-3">Github Repository Link:</p>
                 <Link
-                  className="text-sky-700"
+                  className="text-blue-400 hover:text-blue-500 transition-colors"
                   target="_blank"
                   to={gitRepoLink}
                 >
@@ -106,9 +111,9 @@ const ViewProject = () => {
                 </Link>
               </div>
               <div className="w-full sm:col-span-4">
-                <p className="text-2xl mb-2">Project Link:</p>
+                <p className="text-xl font-semibold text-gray-300 mb-3">Project Link:</p>
                 <Link
-                  className="text-sky-700"
+                  className="text-blue-400 hover:text-blue-500 transition-colors"
                   target="_blank"
                   to={projectLink}
                 >

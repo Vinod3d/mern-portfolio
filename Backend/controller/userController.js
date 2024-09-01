@@ -49,6 +49,7 @@ export const register = async (req, res, next) => {
     const {
       fullName,
       email,
+      address,
       phone,
       aboutMe,
       password,
@@ -63,6 +64,7 @@ export const register = async (req, res, next) => {
     const user = await User.create({
       fullName,
       email,
+      address,
       phone,
       aboutMe,
       password,
@@ -161,6 +163,7 @@ export const updateProfile = async (req, res, next) => {
   const {
     fullName,
     email,
+    address,
     phone,
     aboutMe,
     portfolio,
@@ -175,6 +178,7 @@ export const updateProfile = async (req, res, next) => {
     const newUserdata = {
       fullName,
       email,
+      address,
       phone,
       aboutMe,
       portfolio,

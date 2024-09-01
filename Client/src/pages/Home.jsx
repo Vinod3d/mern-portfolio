@@ -1,22 +1,27 @@
 
-import Hero from "./miniComponents/Hero";
-import Timeline from "./miniComponents/Timeline";
-import Skills from "./miniComponents/Skills";
-import MyApps from "./miniComponents/MyApps";
-import About from "./miniComponents/About";
-import Portfolio from "./miniComponents/Portfolio";
-import Contact from "./miniComponents/Contact";
+// import Hero from "./miniComponents/Hero";
+import Skills from "./Skills/Skills";
+import Navbar from "./Navbar/Navbar";
+import Hero from "./Hero/Hero";
+import About from "./About/About";
+import MyWork from "./MyWork/MyWork";
+import Services from "./Services/Services";
+import Tools from "./Tools/Tools";
+import Contact from "./Contact/Contact";
+import Footer from "./Footer/Footer";
 
 const Home = () => {
   return (
-    <article className="px-5 mt-10 sm:mt-14 md:mt-16 lg:mt-24 xl:mt-32 sm:mx-auto w-full max-w-[1050px] flex flex-col gap-14">
-      <Hero />
-      <Timeline />
-      <About />
+    <article className="">
+      <Navbar/>
+      <Hero/>
+      <About/>
+      <Services/>
       <Skills />
-      <Portfolio />
-      <MyApps />
-      <Contact />
+      <MyWork/>
+      <Tools/>
+      <Contact/>
+      <Footer/>
     </article>
   );
 };

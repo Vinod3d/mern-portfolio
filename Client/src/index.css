@@ -67,3 +67,54 @@
     @apply bg-background text-foreground;
   }
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+  z-index: 1;
+}
+
+.title-box {
+  position: relative;
+}
+
+.title-box h1 {
+  padding: 0 30px;
+  font-size: 60px;
+  font-weight: 600;
+}
+
+.title-box img {
+  width: 160px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.anchor-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+
+  .title-box {
+    position: relative;
+  }
+  
+  .title-box h1 {
+    padding: 0 30px;
+    font-size: 50px;
+    font-weight: 600;
+  }
+  
+  .title-box img {
+    width: 80px;
+    right: 20px;
+    top: 35px;
+  }
+}

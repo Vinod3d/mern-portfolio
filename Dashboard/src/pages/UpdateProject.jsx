@@ -20,6 +20,7 @@ import {
   updateProject,
 } from "@/store/slices/projectSlice";
 import { Button } from "@/components/ui/button";
+import { baseUrl } from "../utils";
 
 const UpdateProject = () => {
   const [title, setTitle] = useState("");
@@ -45,11 +46,12 @@ const UpdateProject = () => {
       setProjectBanner(file);
     };
   };
+  
 
   useEffect(() => {
     const getProject = async () => {
       await axios
-        .get(`/api/project/get/${id}`, {
+        .get(`${baseUrl}/api/project/get/${id}`, {
           withCredentials: true,
         })
         .then((res) => {
@@ -198,7 +200,7 @@ const UpdateProject = () => {
                           <SelectValue placeholder="Select Project Stack" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="Full Stack">Full Stack</SelectItem>
+                        <SelectItem value="Html&CSS, JavaScript">HTML, CSS, JS</SelectItem>
                           <SelectItem value="Mern">MERN</SelectItem>
                           <SelectItem value="Mean">MEAN</SelectItem>
                           <SelectItem value="Next.JS">NEXT.JS</SelectItem>

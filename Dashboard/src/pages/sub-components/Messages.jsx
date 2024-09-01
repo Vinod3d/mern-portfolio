@@ -52,14 +52,14 @@ const Messages = () => {
                 messages && messages.length > 0 ? (
                   messages.map(element=>{
                     return(
-                      <Card key={element._id} className="grid gap-2">
+                      <Card key={element._id} className="grid gap-2 p-5">
                         <CardDescription className="text-slate-950">
                           <span className="font-bold mr-2">Sender Name:</span>
                           {element.senderName}
                         </CardDescription>
                         <CardDescription className="text-slate-950">
-                          <span className="font-bold mr-2">Subject:</span>
-                          {element.subject}
+                          <span className="font-bold mr-2">Email:</span>
+                          {element.email}
                         </CardDescription>
                         <CardDescription className="text-slate-950">
                           <span className="font-bold mr-2">Message:</span>
