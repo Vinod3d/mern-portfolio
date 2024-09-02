@@ -5,6 +5,7 @@ import underline from '../../assets/nav_underline.svg'
 import {useRef, useState} from 'react'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import menu_open from '../../assets/menu_open.svg'
+import menu_openDark from '../../assets/menu_openDark.svg'
 import menu_close from '../../assets/menu_close.svg'
 import { ModeToggle } from '../../components/mode-toggle'
 import { useTheme } from '../../components/themeProvider'
@@ -25,9 +26,9 @@ const Navbar = () => {
     <div className='navbar'>
         <div id="home">
             <img src={theme === 'dark' ? logo : logoDark} alt="logo" className="logo"/>
-            <img src={menu_open} alt="" className='nav-mob-open' onClick={openMenu}/>
+            <img src={theme === 'dark' ? menu_open : menu_openDark} alt="" className='nav-mob-open' onClick={openMenu}/>
         </div>
-        <ul className="nav-menu" ref={menuRef}>
+        <ul className='nav-menu' ref={menuRef}>
             <img src={menu_close} alt="" className='nav-mob-close' onClick={closeMenu}/>
             <li onClick={()=>setMenu('home')}>
                <AnchorLink className={theme === 'dark' ? 'anchor-link' : 'text-gray-900'} offset={50} href="#home">
