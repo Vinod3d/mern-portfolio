@@ -1,6 +1,3 @@
-// export const baseUrl = import.meta.env.VITE_API_URL  === 'production'
-// ? 'https://myportfoliosite-02yh.onrender.com'
-// : 'http://localhost:3000';
-
-export const baseUrl = 'https://myportfoliosite-02yh.onrender.com';
-console.log('VITE_API_URL:', import.meta.env.VITE_API_URL);
+export const baseUrl = import.meta.env.VITE_API_URL  === 'production'
+? 'https://myportfoliosite-02yh.onrender.com'
+: 'http://localhost:3000';
