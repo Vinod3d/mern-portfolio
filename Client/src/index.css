@@ -83,14 +83,14 @@
 
 .title-box h1 {
   padding: 0 30px;
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 600;
 }
 
 .title-box img {
-  width: 160px;
+  width: 120px;
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
   right: 0;
   z-index: -1;
 }
@@ -98,6 +98,20 @@
 .anchor-link {
   text-decoration: none;
   color: #fff;
+}
+
+@media (max-width: 500px){
+  .title-box h1 {
+    padding: 0 0px;
+    font-size: 30px !important;
+    font-weight: 600;
+  }
+  
+  .title-box img {
+    width: 30px !important;
+    right: 20px;
+    top: 25px !important;
+  }
 }
 
 @media (max-width: 768px) {
