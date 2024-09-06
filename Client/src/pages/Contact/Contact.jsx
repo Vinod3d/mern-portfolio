@@ -105,13 +105,13 @@ const Contact = () => {
                     <p>I'm currently available to take on new projects, so feel free to send me a message about anything that you want me to work on. You can contact me anytime.</p>
                     <div className="contact-details">
                         <div className="contact-detail">
-                            <img src={mail_icon} alt="" /> <p>{user.email}</p>
+                            <img src={mail_icon} alt="" width="25px" height="25px"/> <p>{user.email}</p>
                         </div>
                         <div className="contact-detail">
-                            <img src={call_icon} alt="" /> <p>+91 {user.phone}</p>
+                            <img src={call_icon} alt="" width="25px" height="25px"/> <p>+91 {user.phone}</p>
                         </div>
                         <div className="contact-detail">
-                            <img src={location_icon} alt="" /> <p>{user.address}</p>
+                            <img src={location_icon} alt="" width="25px" height="25px"/> <p>{user.address}</p>
                         </div>
                     </div>
                 </div>

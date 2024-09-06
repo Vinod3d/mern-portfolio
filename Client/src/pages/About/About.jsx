@@ -35,7 +35,6 @@ const About = () => {
     };
 
     getMyTimeline();
-
     getMyProfile();
   }, []);
 
@@ -73,20 +72,12 @@ const About = () => {
             </div>
             <span className="sr-only">Loading...</span>
           </div>
-          <div className="w-[900px]">
-            <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-            <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
-            <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-            <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
-            <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
-            <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
-          </div>
         </>
       ) : (
         <>
           <div className="about-sections">
             <div className="about-left">
-              <img src={user.avatar && user.avatar.url} alt={user.fullName} />
+              <img src={user.avatar && user.avatar.url} alt={user.fullName} width="350px" height="350px"/>
             </div>
             <div className="about-right">
               <div className="about-para">
@@ -102,14 +93,14 @@ const About = () => {
                 <h1 className="overflow-x-hidden text-[2rem] sm:text-[1.75rem] md:text-[2.2rem] lg:text-[2.8rem] mb-4 font-extrabold">
                   Timeline
                 </h1>
-                <ol className="relative border-s border-gray-200 dark:border-gray-700">
+                <ol className="relative border-s border-gray-300 dark:border-gray-600">
                   {timeline &&
                     timeline.map((element) => {
                       return (
                         <li className="mb-10 ms-6" key={element._id}>
-                          <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                          <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-200 rounded-full -start-3 ring-8 ring-white dark:ring-gray-800 dark:bg-blue-700">
                             <svg
-                              className="w-2.5 h-2.5 text-blue-800 dark:text-blue-300"
+                              className="w-2.5 h-2.5 text-blue-900 dark:text-blue-200"
                               aria-hidden="true"
                               fill="currentColor"
                               viewBox="0 0 20 20"
@@ -117,16 +108,16 @@ const About = () => {
                               <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                             </svg>
                           </span>
-                          <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+                          <h2 className="mb-1 text-lg font-semibold text-gray-800 dark:text-white">
                             {element.title}
-                          </h3>
-                          <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                          </h2>
+                          <time className="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400">
                             {element.timeline.from} -{" "}
                             {element.timeline.to
                               ? element.timeline.to
                               : "Present"}
                           </time>
-                          <p className="text-base font-normal text-gray-500 dark:text-gray-400">
+                          <p className="text-base font-normal text-gray-600 dark:text-gray-300">
                             {element.description}
                           </p>
                         </li>

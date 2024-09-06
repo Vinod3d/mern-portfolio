@@ -7,12 +7,12 @@ const Footer = () => {
     <div className="footer">
         <div className="footer-top">
             <div className="footer-top-left">
-                <img src={footer_logo} alt="" />
+                <img src={footer_logo} alt="" width="120px" height="90px"/>
                 <p>I am a frontend developer with 3 years of experience in companies Code Fusion Infotech and Knovos.</p>
             </div>
             <div className="footer-top-right">
                 <div className="footer-email-input">
-                    <img src={user_icon} alt="" />
+                    <img src={user_icon} alt="" width="22px" height="22px"/>
                     <input type="email" placeholder="Enter your email"/>
                 </div>
                 <div className="footer-subscribe">Subscribe</div>

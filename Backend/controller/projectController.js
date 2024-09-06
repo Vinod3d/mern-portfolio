@@ -109,7 +109,7 @@ export const updateProject = async (req, res, next)=>{
         if (!project) {
             return next(CustomErrorHandler.notFound("Project Not Found"));
         }
-        if(projectBanner === null){
+        if(projectBanner){
 
             const bannerImageId = project.projectBanner.public_id;
             await cloudinary.uploader.destroy(bannerImageId);

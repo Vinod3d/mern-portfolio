@@ -78,6 +78,8 @@ const Hero = () => {
             src={user.avatar && user.avatar.url}
             alt="profile-img"
             className="profile-img"
+            width="240px"
+            height="240px"
           />
           <h1>
             <span>I'm {user.fullName}, </span>
@@ -88,16 +90,32 @@ const Hero = () => {
             className="w-fit px-5 flex gap-5 
         items-center "
           >
-            <Link to={user?.instagramURL} target="_blank">
+            <Link
+              to={user?.instagramURL}
+              target="_blank"
+              aria-label="Visit my Instagram profile"
+            >
               <Instagram className="text-pink-500 w-6 h-6" />
             </Link>
-            <Link to={user?.facebookURL} target="_blank">
+            <Link
+              to={user?.facebookURL}
+              target="_blank"
+              aria-label="Visit my Facebook profile"
+            >
               <Facebook className="text-blue-800 w-6 h-6" />
             </Link>
-            <Link to={user?.linkedInURL} target="_blank">
+            <Link
+              to={user?.linkedInURL}
+              target="_blank"
+              aria-label="Visit my LinkedIn profile"
+            >
               <Linkedin className="text-sky-500 w-6 h-6" />
             </Link>
-            <Link to={user?.githubURL} target="_blank">
+            <Link
+              to={user?.githubURL}
+              target="_blank"
+              aria-label="Visit my GitHub profile"
+            >
               <Github className="text-sky-500 w-6 h-6" />
             </Link>
           </div>

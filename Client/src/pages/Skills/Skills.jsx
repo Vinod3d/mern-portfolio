@@ -3,10 +3,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { baseUrl } from "../../utils";
 import theme_pattern from "../../assets/theme_pattern.svg";
-import './skills.css'
+import './skills.css';
 
 const Skills = () => {
   const [skills, setSkills] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const getMySkills = async () => {
       const { data } = await axios.get(
@@ -14,32 +16,50 @@ const Skills = () => {
         { withCredentials: true }
       );
       setSkills(data.skills);
+      setLoading(false);
     };
     getMySkills();
   }, []);
+
   return (
     <div className="skills w-full flex flex-col items-center gap-8 sm:gap-12 px-[4%] md:px-[10%] my-20">
       <div className="title-box">
         <h1>My Skills</h1>
         <img src={theme_pattern} alt="" />
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
-        {skills &&
-          skills.map((element) => {
-            return (
+  
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {Array.from({ length: 8 }).map((_, index) => (
+              <div key={index} role="status" className="p-4 border border-gray-200 rounded shadow animate-pulse dark:border-gray-700">
+              <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark:bg-gray-700">
+                <svg className="w-10 h-10 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+                  <path d="M14.066 0H7v5a2 2 0 0 1-2 2H0v11a1.97 1.97 0 0 0 1.934 2h12.132A1.97 1.97 0 0 0 16 18V2a1.97 1.97 0 0 0-1.934-2ZM10.5 6a1.5 1.5 0 1 1 0 2.999A1.5 1.5 0 0 1 10.5 6Zm2.221 10.515a1 1 0 0 1-.858.485h-8a1 1 0 0 1-.9-1.43L5.6 10.039a.978.978 0 0 1 .936-.57 1 1 0 0 1 .9.632l1.181 2.981.541-1a.945.945 0 0 1 .883-.522 1 1 0 0 1 .879.529l1.832 3.438a1 1 0 0 1-.031.988Z"/>
+                  <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z"/>
+                </svg>
+              </div>
+              <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+            </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+            {skills.map((element) => (
               <Card className="card h-fit p-7 flex flex-col justify-center items-center gap-3" key={element._id}>
                 <img
                   src={element.image && element.image.url}
                   alt="skill"
                   className="h-12 sm:h-24 w-auto"
+                  width="95px"
+                  height="95px"
                 />
                 <p className="text-muted-foreground text-center">
                   {element.title}
                 </p>
               </Card>
-            );
-          })}
-      </div>
+            ))}
+          </div>
+        )}
     </div>
   );
 };

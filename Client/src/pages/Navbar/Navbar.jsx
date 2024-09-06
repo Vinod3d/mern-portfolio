@@ -25,39 +25,39 @@ const Navbar = () => {
   return (
     <div className='navbar'>
         <div id="home">
-            <img src={theme === 'dark' ? logo : logoDark} alt="logo" className="logo"/>
-            <img src={theme === 'dark' ? menu_open : menu_openDark} alt="" className='nav-mob-open' onClick={openMenu}/>
+            <img src={theme === 'dark' ? logo : logoDark} alt="logo" className="logo" width="100px" height="50px"/>
+            <img src={theme === 'dark' ? menu_open : menu_openDark} alt="" className='nav-mob-open' onClick={openMenu} width="100px" height="50px"/>
         </div>
         <ul className='nav-menu' ref={menuRef}>
             <img src={menu_close} alt="" className='nav-mob-close' onClick={closeMenu}/>
             <li onClick={()=>setMenu('home')}>
                <AnchorLink className={theme === 'dark' ? 'anchor-link' : 'text-gray-900'} offset={50} href="#home">
                   Home
-                  {menu === "home" ? <img src={underline} alt="" /> : <></>}
+                  {menu === "home" ? <img src={underline} alt="" width="35px" height="8px"/> : <></>}
                </AnchorLink>
             </li>
             <li onClick={()=>setMenu('about')}> 
                <AnchorLink href="#about" className={theme === 'dark' ? 'anchor-link' : 'text-gray-900'} offset={50}>
                   About
-                  {menu === "about" ? <img src={underline} alt="" /> : <></>}
+                  {menu === "about" ? <img src={underline} alt="" width="35px" height="8px"/> : <></>}
                </AnchorLink>
             </li>
             <li onClick={()=>setMenu('services')}>
                <AnchorLink href="#services" className={theme === 'dark' ? 'anchor-link' : 'text-gray-900'} offset={50}>
                   Services
-                  {menu === "services" ? <img src={underline} alt="" /> : <></>}
+                  {menu === "services" ? <img src={underline} alt="" width="35px" height="8px"/> : <></>}
                </AnchorLink>
             </li>
             <li onClick={()=>setMenu('portfolio')}>
                <AnchorLink href="#portfolio" className={theme === 'dark' ? 'anchor-link' : 'text-gray-900'} offset={50}>
                   Portfolio
-                  {menu === "portfolio" ? <img src={underline} alt="" /> : <></>}
+                  {menu === "portfolio" ? <img src={underline} alt="" width="35px" height="8px"/> : <></>}
                </AnchorLink>
             </li>
             <li onClick={()=>setMenu('contact')}>
                <AnchorLink href="#contact" className={theme === 'dark' ? 'anchor-link' : 'text-gray-900'} offset={50}>
                   Contact
-                  {menu === "contact" ? <img src={underline} alt="" /> : <></>}
+                  {menu === "contact" ? <img src={underline} alt="" width="35px" height="8px"/> : <></>}
                </AnchorLink>
             </li>
             <li>

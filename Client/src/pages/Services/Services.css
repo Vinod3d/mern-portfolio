@@ -26,12 +26,12 @@
     cursor: pointer;
 }
 
-.services-format h3 {
+.services-format h2 {
     font-size: 22px;
     font-weight: 600;
 }
 
-.services-format h2 {
+.services-format h3 {
     font-size: 30px;
     font-weight: 800;
     background: linear-gradient(270deg, #DF8908 50%, #B415FF 100%);
@@ -55,7 +55,7 @@
 }
 
 .services-readmore img {
-    width: 20px;
+    /* width: 20px; */
 }
 
 .services-format:hover{

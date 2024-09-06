@@ -14,7 +14,7 @@
 }
 
 .mywork-container img {
-    width: 100%;
+    /* width: 100%; */
     transition: .3s;
     cursor: pointer;
     border-radius: 14px;
