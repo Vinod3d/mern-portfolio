@@ -26,7 +26,7 @@ const Navbar = () => {
     <div className='navbar'>
         <div id="home">
             <img src={theme === 'dark' ? logo : logoDark} alt="logo" className="logo" width="100px" height="50px"/>
-            <img src={theme === 'dark' ? menu_open : menu_openDark} alt="" className='nav-mob-open' onClick={openMenu} width="100px" height="50px"/>
+            <img src={theme === 'dark' ? menu_open : menu_openDark} alt="" className='nav-mob-open' onClick={openMenu} width="40px" height="40px"/>
         </div>
         <ul className='nav-menu' ref={menuRef}>
             <img src={menu_close} alt="" className='nav-mob-close' onClick={closeMenu}/>
