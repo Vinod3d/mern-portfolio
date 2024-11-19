@@ -12,6 +12,8 @@ import softwareApplicationRoutes from './routes/softwareApplicationRoutes.js'
 import skillRoutes from './routes/skillRoutes.js'
 import projectRoutes from './routes/projectRoutes.js'
 import cloudinary from './config/cloudinaryConfig.js';
+import path from 'path';
+
 
 const app = express();
 const port = APP_PORT || 3000;
@@ -33,6 +35,7 @@ app.use(
 );
 
 // ROUTES
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/api/message', messageRoutes)
 app.use('/api/user', userRoutes)
@@ -41,6 +44,10 @@ app.use('/api/application', softwareApplicationRoutes)
 app.use('/api/skill', skillRoutes)
 app.use('/api/project', projectRoutes)
 app.use(errorHandler);
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 const start = async () => {
     try {
