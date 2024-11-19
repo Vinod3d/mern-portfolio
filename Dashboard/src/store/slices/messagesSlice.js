@@ -36,7 +36,10 @@ const messageSlice = createSlice({
           deleteMessageSuccess(state, action) {
             state.error = null;
             state.loading = false;
-            state.message = action.payload;
+            state.message = action.payload.message;
+            state.messages = state.messages.filter(
+              (message) => message._id !== action.payload.id
+            );
           },
           deleteMessageFailed(state, action) {
             state.error = action.payload;
@@ -78,7 +81,12 @@ export const deleteMessage = (id) => async(dispatch) => {
       { withCredentials: true }
     );
 
-    dispatch(messageSlice.actions.deleteMessageSuccess(data.message))
+    dispatch(
+      messageSlice.actions.deleteMessageSuccess({
+        message: data.message,
+        id,
+      })
+    );
     dispatch(messageSlice.actions.clearAllErrors());
   } catch (error) {
     dispatch(messageSlice.actions.deleteMessageFailed(error.response.data.message));
