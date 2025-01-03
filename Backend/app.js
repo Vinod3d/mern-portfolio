@@ -14,6 +14,12 @@ import projectRoutes from './routes/projectRoutes.js'
 import cloudinary from './config/cloudinaryConfig.js';
 import path from 'path';
 
+import { fileURLToPath } from 'url';
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 const app = express();
 const port = APP_PORT || 3000;
@@ -37,17 +43,24 @@ app.use(
 // ROUTES
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.use('/api/message', messageRoutes)
-app.use('/api/user', userRoutes)
-app.use('/api/timeline', timelineRoutes)
-app.use('/api/application', softwareApplicationRoutes)
-app.use('/api/skill', skillRoutes)
-app.use('/api/project', projectRoutes)
-app.use(errorHandler);
+app.use('/api/message', messageRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/timeline', timelineRoutes);
+app.use('/api/application', softwareApplicationRoutes);
+app.use('/api/skill', skillRoutes);
+app.use('/api/project', projectRoutes);
 
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
+
+// Health Check Route
+app.get('/check', (req, res) => {
+    res.send('app is running');
+});
+app.use(errorHandler);
+
 
 const start = async () => {
     try {

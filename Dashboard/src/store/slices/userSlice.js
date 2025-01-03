@@ -19,7 +19,7 @@ const userSlice = createSlice({
 
         // login
         loginRequest(state){
-            state.loading = true;
+            // state.loading = true;
             state.user = {},
             state.isAuthenticated = false;
             state.error = null;
